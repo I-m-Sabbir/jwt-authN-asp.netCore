@@ -7,18 +7,19 @@
       <div class="form-group row p-2">
         <label class="col-md-2 col-form-label">User Name</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" />
+          <input class="form-control" [(ngModel)]="user.UserName" type="text" />
         </div>
       </div>
 
       <div class="form-group row p-2">
         <label class="col-md-2 col-form-label">Password</label>
         <div class="col-md-10">
-          <input class="form-control" type="password" />
+          <input class="form-control" [(ngModel)]="user.Password" type="password" />
         </div>
       </div>
 
     </div>
-    <div class="card-footer"><button class="btn btn-outline-success">Submit</button></div>
+    <div class="card-footer"><button (click)="Login()" class="btn btn-outline-success">Submit</button></div>
   </div>
+  <samp class="bg-success text-break fs-3 fw-3">{{data}}</samp>
 </div>

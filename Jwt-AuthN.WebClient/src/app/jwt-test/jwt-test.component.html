@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="loginSuccess == false; else elseBlock" class="container">
   <br />
   <div class="card border-danger">
     <div class="card-header">Credentials</div>
@@ -21,5 +21,9 @@
     </div>
     <div class="card-footer"><button (click)="Login()" class="btn btn-outline-success">Submit</button></div>
   </div>
-  <samp class="bg-success text-break fs-3 fw-3">{{data}}</samp>
 </div>
+
+<ng-template #elseBlock class="card-body justify-content-center">
+  <label class="text-success">Successfully logged In</label>
+  <app-hello-word></app-hello-word>
+</ng-template>

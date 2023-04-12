@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { JwtTokenService } from '../jwt-token.service';
 import { User } from '../User';
 
@@ -8,19 +7,24 @@ import { User } from '../User';
   templateUrl: './jwt-test.component.html',
   styleUrls: ['./jwt-test.component.css']
 })
-export class JwtTestComponent implements OnInit{
+export class JwtTestComponent implements OnInit {
   public user = new User();
-  public token: string = "";
-  public data: string = "";
+  public token = "";
+  public loginSuccess: boolean = true;
 
-  constructor(private _service: JwtTokenService) {  }
+  constructor(private _service: JwtTokenService) { }
+
   ngOnInit(): void {
-    
+
   }
-  Login(){
-    this._service.getToken(this.user).subscribe(data => {this.token = data.toString()});
-    if(this.token.length > 0 ){
-      this._service.getString(this.token).subscribe(data => {console.log(data.toString())});
+
+  Login() {
+    this._service.getToken(this.user);
+    this._service.getToken(this.user).subscribe(data => { this.token = data.toString() });
+    if(this.token){
+      sessionStorage.clear();
+      sessionStorage.setItem('token', this.token);
+      this.loginSuccess = true;
     }
   }
 }
